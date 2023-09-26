@@ -25,11 +25,11 @@ class TravelController < ApplicationController
 
   def search
     country = find_country((params[:country]))
-    @country = country
+    @country = country.read_body
   end
 
   def find_country(name)
-    url = URI("https://rest-countries10.p.rapidapi.com/country/France")
+    url = URI("https://rest-countries10.p.rapidapi.com/country/#{name}")
 
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true
